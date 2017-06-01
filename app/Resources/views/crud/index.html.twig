@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>File list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Description</th>
+                <th>File</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for crud in cruds %}
+            <tr>
+                <td>{{ crud.name }}</td>
+                <td>{{ crud.description }}</td>
+                <td>{{ crud.file }}</td>
+                <td>
+                    <div class="btn-toolbar">
+                            <a href="{{ path('crud_show', { 'id': crud.id }) }}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-search"></span></button></a>
+
+                            <a href="{{ path('crud_edit', { 'id': crud.id }) }}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></button></a>
+
+                            <a  href="{{ path('crud_delete', { 'id': crud.id }) }}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-trash"></span></button></a>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="btn-toolbar">
+            <a  href="{{ path('crud_new') }}"><button type="button" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Add Invoice</button></a>
+    </div>
+{% endblock %}
